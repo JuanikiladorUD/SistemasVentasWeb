@@ -3,7 +3,7 @@
     Created on : 22/11/2022, 6:40:16 p. m.
     Author     : Aylin Camila Orjuela Leiva & Juan Pablo Cuellar Florez 
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

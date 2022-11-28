@@ -3,6 +3,7 @@
     Created on : 23/11/2022, 6:10:39 p. m.
     Author     : USER
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -58,31 +59,18 @@
                     <tbody>
                     <c:forEach var="em" items="${list}" >
                         <tr>
-                            <td>${list.get(em).getId()}</td>
-                            <td>${list.get(em).getDni()}</td>
-                            <td>${list.get(em).getNom()}</td>
-                            <td>${list.get(em).getTel()}</td>
-                            <td>${list.get(em).getEstado()}</td>
-                            <td>${list.get(em).getUser()}</td>
+                            <td>${em.getId()}</td>
+                            <td>${em.getDni()}</td>
+                            <td>${em.getNom()}</td>
+                            <td>${em.getTel()}</td>
+                            <td>${em.getEstado()}</td>
+                            <td>${em.getUser()}</td>
                             <td>
-                                <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${list.get(em).getId()}">Editar</a>
-                                <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${list.get(em).getId()}">Delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>${list.get(em+1).getId()}</td>
-                            <td>${list.get(em+1).getDni()}</td>
-                            <td>${list.get(em+1).getNom()}</td>
-                            <td>${list.get(em+1).getTel()}</td>
-                            <td>${list.get(em+1).getEstado()}</td>
-                            <td>${list.get(em+1).getUser()}</td>
-                            <td>
-                                <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${list.get(em+1).getId()}">Editar</a>
-                                <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${list.get(em+1).getId()}">Delete</a>
+                                <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${em.getId()}">Editar</a>
+                                <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${em.getId()}">Delete</a>
                             </td>
                         </tr>
                     </c:forEach> 
-
                     </tbody>
                 </table>
             </div>

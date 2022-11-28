@@ -40,7 +40,9 @@ public class Controlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String menu = request.getParameter("menu");
+        System.out.println(menu);
         String accion = request.getParameter("accion");
+        System.out.println(accion);
         if (menu.equalsIgnoreCase("Principal")) {
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
@@ -175,7 +177,7 @@ public class Controlador extends HttpServlet {
                     lista = new ArrayList<>();
                     item = 0;
                     totalPagar = 0.0;
-                    numeroserie = vdao.GenerarSerie();
+                    /*numeroserie = vdao.GenerarSerie();
                     if(numeroserie == null){
                         numeroserie = "00000001";
                         request.setAttribute("nserie", numeroserie);
@@ -184,8 +186,8 @@ public class Controlador extends HttpServlet {
                         GenerarSerie gs = new GenerarSerie();
                         numeroserie=gs.NumeroSerie(incrementar);
                         request.setAttribute("nserie", numeroserie);
-                    }
-                    throw new AssertionError();
+                    }*/
+                    break;
             }
             request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
         }

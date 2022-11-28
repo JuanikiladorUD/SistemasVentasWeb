@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@
         <div class="d-flex">
             <div class="col-sm-5 parte01">
                 <div class="card">
-                    <form action="Controlador?menu=NuevaVenta" method="post">
+                    <form action="Controlador?menu=NuevaVenta" method="POST">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Datos del Cliente</label>
@@ -88,8 +89,8 @@
                             <c:forEach var="list" items="${lista}">
                                 <tr>
                                     <td>${list.getItem()}</td>
-                                    <td>${list.getIdProducto()}</td>
-                                    <td>${list.getDescripcion()}</td>
+                                    <td>${list.getIdproducto()}</td>
+                                    <td>${list.getDescripcionP()}</td>
                                     <td>${list.getPrecio()}</td>
                                     <td>${list.getCantidad()}</td>
                                     <td>${list.getSubtotal()}</td>
