@@ -4,8 +4,13 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @author Aylin Camila Orjuela Leiva & Juan Pablo Cuellar Florez
+ */
 
 public class ClienteDAO {
 
@@ -29,8 +34,8 @@ public class ClienteDAO {
                 c.setDireccion(rs.getString(4));
                 c.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
-            System.out.println("Errpr en el metodo buscar de la clase ClienteDAO: "+e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Errpr en el metodo buscar de la clase ClienteDAO: " + e.getMessage());
         }
         return c;
     }
@@ -50,7 +55,7 @@ public class ClienteDAO {
                 cli.setDireccion(rs.getString("Direccion"));
                 cli.setEstado(rs.getString("Estado"));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al Validar Cliente : " + e.getMessage());
         }
         return cli;
@@ -72,14 +77,14 @@ public class ClienteDAO {
                 cli.setEstado(rs.getString(5));
                 Lista.add(cli);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error metodo listar en clase ClienteDAO : " + e.getMessage());
         }
         return Lista;
     }
 
     public int agregar(Cliente cli) {
-        String sql = "INSERT INTO cliente values(Dni, Nombres, Direccion, Estado)values(?,?,?,?)";
+        String sql = "insert into cliente(Dni, Nombres, Direccion, Estado)values(?,?,?,?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -88,15 +93,15 @@ public class ClienteDAO {
             ps.setString(3, cli.getDireccion());
             ps.setString(4, cli.getEstado());
             ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Error en metodo agregar de la clase EmpleadoDAO : " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error en metodo agregar de la clase ClienteDAO : " + e.getMessage());
         }
         return r;
     }
 
     public Cliente listarId(int id) {
         Cliente cli = new Cliente();
-        String sql = "SELECT * FROM cliente WHERE IdCliente=" + id;
+        String sql = "select * from cliente where IdCliente=" + id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -107,7 +112,7 @@ public class ClienteDAO {
                 cli.setDireccion(rs.getString(4));
                 cli.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el metodo listarId en la clase ClienteDAO : " + e.getMessage());
         }
         return cli;
@@ -124,7 +129,7 @@ public class ClienteDAO {
             ps.setString(4, cli.getEstado());
             ps.setInt(5, cli.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en metodo actualizar de la clase ClienteDAO : " + e.getMessage());
         }
         return r;
@@ -136,7 +141,7 @@ public class ClienteDAO {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en metodo delete de la clase ClienteDAO : " + e.getMessage());
         }
     }

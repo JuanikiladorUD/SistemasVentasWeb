@@ -1,3 +1,9 @@
+<%-- 
+    Document   : Empleado
+    Created on : 23/11/2022, 6:10:39 p. m.
+    Author     : Aylin Camila Orjuela Leiva & Juan Pablo Cuellar Florez
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,7 +36,7 @@
                                     <input type="submit" name="accion" value="BuscarCliente" class="btn btn-outline-info">
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="text" name="nombrescliente" value="${c.getNom()}" class="form-control">
+                                    <input type="text" name="nombrescliente" value="${c.getNom()}" class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group">
@@ -38,22 +44,22 @@
                             </div>
                             <div class="form-group d-flex">
                                 <div class="col-sm-6 d-flex">
-                                    <input type="text" name="codigoproducto" value="${producto.getId()}" class="form-control" placeholder="Codigo">
+                                    <input type="text" name="codigoproducto" value="${producto.getId()}" class="form-control" placeholder="Codigo" >
                                     <button type="submit" name="accion" value="BuscarProducto" class="btn btn-outline-info">Buscar</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="nomproducto" value="${producto.getNombre()}" placeholder="Datos Producto" class="form-control">
+                                    <input type="text" name="nomproducto" value="${producto.getNombre()}" placeholder="Datos Producto" class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group d-flex">
                                 <div class="col-sm-6 d-flex">
-                                    <input type="text" name="precio" value="${producto.getPrecio()}" placeholder="S/.0.00" class="form-control">
+                                    <input type="text" name="precio" value="${producto.getPrecio()}" placeholder="S/.0.00" class="form-control" >
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="number" name="cant" value="1" placeholder="" class="form-control">
                                 </div>
                                 <div class="col-sm-3">
-                                    <input type="text" name="stock" value="${producto.getStock()}" placeholder="Stock" class="form-control">
+                                    <input type="text" name="stock" value="${producto.getStock()}" placeholder="Stock" class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group">

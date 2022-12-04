@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.Objects;
+
 /**
  * @author Aylin Camila Orjuela Leiva & Juan Pablo Cuellar Florez
  */
@@ -68,4 +70,46 @@ public class Empleado {
         this.user = user;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.dni);
+        hash = 53 * hash + Objects.hashCode(this.nom);
+        hash = 53 * hash + Objects.hashCode(this.tel);
+        hash = 53 * hash + Objects.hashCode(this.estado);
+        hash = 53 * hash + Objects.hashCode(this.user);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Empleado other = (Empleado) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.dni, other.dni)) {
+            return false;
+        }
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.tel, other.tel)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        return Objects.equals(this.user, other.user);
+    }
+    
 }

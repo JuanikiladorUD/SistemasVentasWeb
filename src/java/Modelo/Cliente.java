@@ -1,12 +1,19 @@
 package Modelo;
 
+import java.util.Objects;
+
+/**
+ * @author Aylin Camila Orjuela Leiva & Juan Pablo Cuellar Florez
+ */
+
 public class Cliente {
+
     private int id;
-    private String Dni,Nom,Direccion,Estado;
+    private String Dni, Nom, Direccion, Estado;
 
     public Cliente() {
     }
-    
+
     public Cliente(int id, String Dni, String Nom, String Direccion, String Estado) {
         this.id = id;
         this.Dni = Dni;
@@ -54,6 +61,43 @@ public class Cliente {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + this.id;
+        hash = 23 * hash + Objects.hashCode(this.Dni);
+        hash = 23 * hash + Objects.hashCode(this.Nom);
+        hash = 23 * hash + Objects.hashCode(this.Direccion);
+        hash = 23 * hash + Objects.hashCode(this.Estado);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.Dni, other.Dni)) {
+            return false;
+        }
+        if (!Objects.equals(this.Nom, other.Nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.Direccion, other.Direccion)) {
+            return false;
+        }
+        return Objects.equals(this.Estado, other.Estado);
+    }
     
 }

@@ -1,9 +1,16 @@
 package Modelo;
 
+import java.util.Objects;
+
+/**
+ * @author Aylin Camila Orjuela Leiva & Juan Pablo Cuellar Florez
+ */
+
 public class Venta {
-    int id,item,idcliente,idempleado,idproducto,cantidad;
-    String Numserie,DescripcionP,fecha,estado;
-    double precio,subtotal,monto;
+
+    int id, item, idcliente, idempleado, idproducto, cantidad;
+    String Numserie, DescripcionP, fecha, estado;
+    double precio, subtotal, monto;
 
     public Venta() {
     }
@@ -127,6 +134,75 @@ public class Venta {
     public void setMonto(double monto) {
         this.monto = monto;
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 43 * hash + this.id;
+        hash = 43 * hash + this.item;
+        hash = 43 * hash + this.idcliente;
+        hash = 43 * hash + this.idempleado;
+        hash = 43 * hash + this.idproducto;
+        hash = 43 * hash + this.cantidad;
+        hash = 43 * hash + Objects.hashCode(this.Numserie);
+        hash = 43 * hash + Objects.hashCode(this.DescripcionP);
+        hash = 43 * hash + Objects.hashCode(this.fecha);
+        hash = 43 * hash + Objects.hashCode(this.estado);
+        hash = 43 * hash + (int) (Double.doubleToLongBits(this.precio) ^ (Double.doubleToLongBits(this.precio) >>> 32));
+        hash = 43 * hash + (int) (Double.doubleToLongBits(this.subtotal) ^ (Double.doubleToLongBits(this.subtotal) >>> 32));
+        hash = 43 * hash + (int) (Double.doubleToLongBits(this.monto) ^ (Double.doubleToLongBits(this.monto) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Venta other = (Venta) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.item != other.item) {
+            return false;
+        }
+        if (this.idcliente != other.idcliente) {
+            return false;
+        }
+        if (this.idempleado != other.idempleado) {
+            return false;
+        }
+        if (this.idproducto != other.idproducto) {
+            return false;
+        }
+        if (this.cantidad != other.cantidad) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.precio) != Double.doubleToLongBits(other.precio)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.subtotal) != Double.doubleToLongBits(other.subtotal)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.monto) != Double.doubleToLongBits(other.monto)) {
+            return false;
+        }
+        if (!Objects.equals(this.Numserie, other.Numserie)) {
+            return false;
+        }
+        if (!Objects.equals(this.DescripcionP, other.DescripcionP)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
+            return false;
+        }
+        return Objects.equals(this.estado, other.estado);
+    }
+
 }

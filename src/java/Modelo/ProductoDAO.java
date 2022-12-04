@@ -4,8 +4,13 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @author Aylin Camila Orjuela Leiva & Juan Pablo Cuellar Florez
+ */
 
 public class ProductoDAO {
 
@@ -14,41 +19,41 @@ public class ProductoDAO {
     PreparedStatement ps;
     ResultSet rs;
     int r;
-    
-    public Producto buscar(int id){
+
+    public Producto buscar(int id) {
         Producto p = new Producto();
-        String sql = "select * from producto where IdProducto="+id;
+        String sql = "select * from producto where IdProducto=" + id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 p.setId(rs.getInt(1));
                 p.setNombre(rs.getString(2));
                 p.setPrecio(rs.getDouble(3));
                 p.setStock(rs.getInt(4));
                 p.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
-            System.out.println("Error metodo buscar ProductoDAO : "+e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error metodo buscar ProductoDAO : " + e.getMessage());
         }
         return p;
     }
-    
-    public int actualizarStock(int id,int stock){
-        String sql="update producto set Stock=? where IdProducto="+id;
+
+    public int actualizarStock(int id, int stock) {
+        String sql = "update producto set Stock=? where IdProducto=" + id;
         try {
-            con=cn.Conexion();
-            ps=con.prepareStatement(sql);
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
             ps.setInt(1, stock);
             ps.setInt(2, id);
             ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Error en metodo actualizarStock en ProductoDAO : "+e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error en metodo actualizarStock en ProductoDAO : " + e.getMessage());
         }
         return r;
     }
-    
+
     public Producto validar(String nom) {
         Producto prod = new Producto();
         String sql = "select * FROM producto WHERE Nombres=?";
@@ -64,12 +69,12 @@ public class ProductoDAO {
                 prod.setStock(rs.getInt("Stock"));
                 prod.setEstado(rs.getString("Estado"));
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException | SQLException e) {
             System.out.println("Error en Validar en la clase ProductoDAO : " + e.getMessage());
         }
         return prod;
     }
-    
+
     public List listar() {
         String sql = "SELECT * FROM producto";
         List<Producto> Lista = new ArrayList<>();
@@ -86,14 +91,14 @@ public class ProductoDAO {
                 prod.setEstado(rs.getString(5));
                 Lista.add(prod);
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException | SQLException e) {
             System.out.println("Error metodo listar en clase ProductoDAO : " + e.getMessage());
         }
         return Lista;
     }
 
     public int agregar(Producto prod) {
-        String sql = "INSERT INTO producto values(Nombres, Precio, Stock, Estado)values(?,?,?,?)";
+        String sql = "insert into producto(Nombres, Precio, Stock, Estado)values(?,?,?,?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -102,7 +107,7 @@ public class ProductoDAO {
             ps.setInt(3, prod.getStock());
             ps.setString(4, prod.getEstado());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en metodo agregar de la clase ProductoDAO : " + e.getMessage());
         }
         return r;
@@ -121,7 +126,7 @@ public class ProductoDAO {
                 prod.setStock(rs.getInt(4));
                 prod.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el metodo listarId en la clase ProductoDAO : " + e.getMessage());
         }
         return prod;
@@ -138,7 +143,7 @@ public class ProductoDAO {
             ps.setString(4, prod.getEstado());
             ps.setInt(5, prod.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en metodo actualizar de la clase ProductoDAO : " + e.getMessage());
         }
         return r;
@@ -150,7 +155,7 @@ public class ProductoDAO {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en metodo delete de la clase ProductoDAO : " + e.getMessage());
         }
     }

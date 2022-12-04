@@ -4,6 +4,11 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * @author Aylin Camila Orjuela Leiva & Juan Pablo Cuellar Florez
+ */
 
 public class VentaDAO {
 
@@ -15,7 +20,7 @@ public class VentaDAO {
 
     public String GenerarSerie() {
         String numeroserie = "";
-        String sql = "select * max(NumeroSerie) from ventas";
+        String sql = "select max(NumeroSerie) from ventas";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -23,7 +28,8 @@ public class VentaDAO {
             while (rs.next()) {
                 numeroserie = rs.getString(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Error en metodo GenerarSerie clase VentaDAO : "+e.getMessage());
         }
         return numeroserie;
     }
@@ -38,7 +44,8 @@ public class VentaDAO {
             while (rs.next()) {
                 idventas = rs.getString(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Error en metodo IdVentas clase VentaDAO : " + e.getMessage());
         }
         return idventas;
     }
@@ -55,7 +62,8 @@ public class VentaDAO {
             ps.setDouble(5, ve.getPrecio());
             ps.setString(6, ve.getEstado());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Error en Metodo guardarVenta clase VentaDAO : " + e.getMessage());
         }
         return r;
     }
@@ -70,7 +78,8 @@ public class VentaDAO {
             ps.setInt(3, venta.getCantidad());
             ps.setDouble(4, venta.getPrecio());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Error en metodo guardarDetalleventas clase VentaDAO : " + e.getMessage());
         }
         return r;
     }
